@@ -17,7 +17,7 @@ tags:
 > 输出: [1,3,12,0,0]
 
 **思路**：使用快慢指针，慢指针为0且快指针不为0时调换顺序。当慢指针对应数值与后续所有数判断完成后，慢指针+=1
-``
+```
 def moveZeros(nums:list[int])->None:
     if len(nums) == 0:
         return None
@@ -29,4 +29,4 @@ def moveZeros(nums:list[int])->None:
             slow += 1
         fast += 1
     return nums
-``
+```
