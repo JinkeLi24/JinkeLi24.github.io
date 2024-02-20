@@ -77,5 +77,27 @@ def moveZeros(nums:list[int])-> int:
 >合并结果是 [1] 。
 >注意，因为 m = 0 ，所以 nums1 中没有元素。nums1 中仅存的 0 仅仅是为了确保合并结果可以顺利存放到 nums1 中。
 
-**思路**：因为两个数组为非递减，左右指针分别从m-1和n-1开始，如果右大于左就将右放在nums1最后一个，右小于左就将右放在左指针位置上，左指针原有的数放在后一个。应该判断m+n次
+**思路**：因为两个数组为非递减，左右指针分别从m-1和n-1开始，如果右大于左就将右放在nums1未判断位置的最后一个，右小于左就将左放在未判断位置最后一个。应该判断m+n次。本质上是在两个数组中找最大的值放在后面。
+
+```
+def merge(nums1:list[int], m:int, nums2:list[int], n:int)->list[int]:
+    p1, p2 = m-1, n-1 
+    for i in range(m+n-1, -1, -1):
+        # 如果p1遍历完了，说明nums2剩下的数都比nums1第一个数小
+        if p1 == -1:
+            nums1[0:i+1] = nums2[0:p2+1]
+            break
+        # 如果p2遍历完了，说明nums1剩下的数都比nums2中数小，不用动
+        elif p2 == -1:
+            break
+        elif nums1[p1] >= nums1[p2]:
+            nums1[i] = nums1[p1]
+            p1 -= 1
+        elif nums1[p1] < nums1[p2]:
+            nums1[i] = nums2[p2]
+            p2 -= 1
+    return nums1
+print(merge([1,2,3,4,0,0,0,0],4,[9,10,11,12],4))
+print(merge([10,20,30,40,0,0,0,0],4,[9,10,10,11],4))
+```
 
