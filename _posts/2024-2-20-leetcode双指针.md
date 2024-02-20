@@ -13,12 +13,13 @@ tags:
 ## leetcode 283 （Move Zeros）
 > 给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。
 > 请注意 ，必须在不复制数组的情况下原地对数组进行操作。
+> 
 > 输入: nums = [0,1,0,3,12]
 > 输出: [1,3,12,0,0]
 
 **思路**：使用快慢指针，慢指针为0且快指针不为0时调换顺序。当慢指针对应数值与后续所有数判断完成后，慢指针+=1
 ```
-def moveZeros(nums:list[int])->None:
+def moveZeros(nums:list[int])->list[int]:
     if len(nums) == 0:
         return None
     slow, fast = 0, 1
@@ -39,3 +40,17 @@ def moveZeros(nums:list[int])->None:
 > 
 > 输入：nums = [1,1,2]
 > 输出：2, nums = [1,2,_]
+
+**思路**：使用快慢指针，慢指针与快指针相等时，快指针往后移动，当不相等时，将慢指针下一位置为快指针的值
+```
+def moveZeros(nums:list[int])-> int:
+    if len(nums) == 0:
+        return 0
+    slow, fast = 0, 1
+    while fast < len(nums):
+        if nums[slow] != nums[fast]:
+            slow += 1
+            nums[slow] = nums[fast]
+        fast += 1
+    return slow + 1
+```
