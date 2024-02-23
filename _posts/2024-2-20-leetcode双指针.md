@@ -19,17 +19,18 @@ tags:
 
 **思路**：使用快慢指针，慢指针为0且快指针不为0时调换顺序。当慢指针对应数值与后续所有数判断完成后，慢指针+=1
 ```
-def moveZeros(nums:list[int])->list[int]:
-    if len(nums) == 0:
-        return None
-    slow, fast = 0, 1
-    while fast < len(nums):
-        if nums[slow] == 0 and nums[fast] != 0:
-            nums[slow] == nums[fast]
-            nums[fast] == 0 
-            slow += 1
-        fast += 1
-    return nums
+def moveZeroes(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        left, right = 0, 1
+        while right < len(nums):
+            if nums[left] != 0:
+                left += 1
+            elif nums[left] ==0 and nums[right]:
+                nums[left],nums[right] = nums[right], 0
+                left += 1
+            right += 1
 ```
 
 ## leetcode26 （删除有序数组重复项）
