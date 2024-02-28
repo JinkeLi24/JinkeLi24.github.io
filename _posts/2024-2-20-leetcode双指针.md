@@ -44,16 +44,14 @@ def moveZeroes(self, nums: List[int]) -> None:
 
 **思路**：使用快慢指针，慢指针与快指针相等时，快指针往后移动，当不相等时，将慢指针下一位置为快指针的值
 ```
-def moveZeros(nums:list[int])-> int:
-    if len(nums) == 0:
-        return 0
-    slow, fast = 0, 1
-    while fast < len(nums):
-        if nums[slow] != nums[fast]:
-            slow += 1
-            nums[slow] = nums[fast]
-        fast += 1
-    return slow + 1
+def removeDuplicates(self, nums: List[int]) -> int:
+        left, right = 0, 1
+        while right < len(nums):
+            if nums[left] != nums[right]:
+                left += 1
+                nums[left] = nums[right]
+            right += 1
+        return left + 1
 ```
 
 ## leetcode88（合并两个有序数组）
